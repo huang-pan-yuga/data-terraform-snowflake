@@ -129,17 +129,17 @@ resources required for this module.
 
 ```{terraform}
 // set up user and role
-create user terraform_user;
-create role terraform;
-grant role terraform to user terraform_user;
+create user terraform;
+create role terraform_role;
+grant role terraform_role to user terraform;
 
 // grant account privileges
-grant create user on account to role terraform;
-grant create database on account to role terraform;
-grant create integration on account to role terraform;
-grant create role on account to role terraform;
-grant create warehouse on account to role terraform;
-grant manage grants on account to role terraform;
+grant create user on account to role terraform_role;
+grant create database on account to role terraform_role;
+grant create integration on account to role terraform_role;
+grant create role on account to role terraform_role;
+grant create warehouse on account to role terraform_role;
+grant manage grants on account to role terraform_role;
 
 // Note that, currently, `CREATE RESOURCE MONITOR` cannot be granted to another user
 ```
