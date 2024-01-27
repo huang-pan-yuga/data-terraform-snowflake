@@ -7,7 +7,6 @@ terraform {
       version = ">=2.2.0"
     }
   }
-  experiments = [module_variable_optional_attrs]
 }
 
 resource "snowflake_warehouse_grant" "main" {
