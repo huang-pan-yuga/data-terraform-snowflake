@@ -156,6 +156,7 @@ resource "snowflake_schema_grant" "datascience_schema_bronze_sigma_grant" {
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/table_grant
+/*
 resource "snowflake_table_grant" "telemetry_bronze_accelbyte_table_future_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_accelbyte.name
@@ -165,7 +166,7 @@ resource "snowflake_table_grant" "telemetry_bronze_accelbyte_table_future_grant"
   roles                     = [snowflake_role.accelbyte.name]
   with_grant_option         = false
 }
-
+*/
 resource "snowflake_table_grant" "telemetry_bronze_helika_table_future_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_helika.name
