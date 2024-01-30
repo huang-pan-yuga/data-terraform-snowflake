@@ -123,7 +123,7 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_accelbyte_grant" {
   with_grant_option         = false
 }
 */
-resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
+/*resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_helika.name
   enable_multiple_grants    = false
@@ -131,7 +131,7 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.aws.name]
   with_grant_option         = false
-}
+}*/
 /*
 resource "snowflake_schema_grant" "telemetry_schema_bronze_web_grant" {
   database_name             = snowflake_database.telemetry.name
@@ -167,7 +167,7 @@ resource "snowflake_table_grant" "telemetry_bronze_accelbyte_table_future_grant"
   with_grant_option         = false
 }
 */
-resource "snowflake_table_grant" "telemetry_bronze_helika_table_future_grant" {
+/*resource "snowflake_table_grant" "telemetry_bronze_helika_table_future_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_helika.name
   enable_multiple_grants    = false
@@ -185,7 +185,7 @@ resource "snowflake_table_grant" "telemetry_bronze_web_table_future_grant" {
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.aws.name]
   with_grant_option         = false
-}
+}*/
 /*
 resource "snowflake_table_grant" "telemetry_sandbox_table_future_grant" {
   database_name             = snowflake_database.telemetry.name
