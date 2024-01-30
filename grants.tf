@@ -92,7 +92,7 @@ resource "snowflake_schema_grant" "test_schema_future_grant" {
                                snowflake_role.hex.name]
   with_grant_option         = false
 }
-
+/*
 resource "snowflake_schema_grant" "telemetry_schema_future_grant" {
   database_name             = snowflake_database.telemetry.name
   enable_multiple_grants    = false
@@ -111,8 +111,8 @@ resource "snowflake_schema_grant" "datascience_schema_future_grant" {
   roles                     = [snowflake_role.y42.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
-}
-
+}*/
+/*
 resource "snowflake_schema_grant" "telemetry_schema_bronze_accelbyte_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_accelbyte.name
@@ -122,7 +122,7 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_accelbyte_grant" {
   roles                     = [snowflake_role.accelbyte.name]
   with_grant_option         = false
 }
-
+*/
 resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_helika.name
@@ -219,7 +219,7 @@ resource "snowflake_table_grant" "datascience_sandbox_table_future_grant" {
                                snowflake_role.hex.name]
   with_grant_option         = false
 }
-*/
+*//*
 resource "snowflake_table_grant" "datascience_archive_table_future_grant" {
   database_name             = snowflake_database.datascience.name
   schema_name               = snowflake_schema.datascience_archive.name
@@ -229,8 +229,8 @@ resource "snowflake_table_grant" "datascience_archive_table_future_grant" {
   roles                     = [snowflake_role.y42.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
-}
-
+}*/
+/*
 resource "snowflake_table_grant" "datascience_bronze_sigma_table_future_grant" {
   database_name             = snowflake_database.datascience.name
   schema_name               = snowflake_schema.datascience_bronze_sigma.name
@@ -242,15 +242,15 @@ resource "snowflake_table_grant" "datascience_bronze_sigma_table_future_grant" {
                                snowflake_role.sigma.name]
   with_grant_option         = false
 }
-
+*/
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/warehouse_grant
-resource "snowflake_warehouse_grant" "compute_grant" {
+/*resource "snowflake_warehouse_grant" "compute_grant" {
   warehouse_name            = snowflake_warehouse.compute.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.terraform.name]
   with_grant_option         = false
-}
+}*/
 /*
 resource "snowflake_warehouse_grant" "etl_grant" {
   warehouse_name            = snowflake_warehouse.etl.name
