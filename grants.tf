@@ -79,7 +79,7 @@ resource "snowflake_database_grant" "datascience_database_grant" {
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant
-resource "snowflake_schema_grant" "test_schema_future_grant" {
+/*resource "snowflake_schema_grant" "test_schema_future_grant" {
   database_name             = snowflake_database.test.name
   enable_multiple_grants    = false
   on_future                 = true
@@ -91,7 +91,7 @@ resource "snowflake_schema_grant" "test_schema_future_grant" {
                                snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
-}
+}*/
 /*
 resource "snowflake_schema_grant" "telemetry_schema_future_grant" {
   database_name             = snowflake_database.telemetry.name
@@ -261,7 +261,7 @@ resource "snowflake_warehouse_grant" "etl_grant" {
                                snowflake_role.y42.name]
   with_grant_option         = false
 }
-*/
+*//*
 resource "snowflake_warehouse_grant" "datascience_grant" {
   warehouse_name            = snowflake_warehouse.datascience.name
   enable_multiple_grants    = false
@@ -269,6 +269,6 @@ resource "snowflake_warehouse_grant" "datascience_grant" {
   roles                     = [snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
-}
+}*/
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_role
