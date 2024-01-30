@@ -1,16 +1,16 @@
 provider "snowflake" {
   account  = var.snowflake_account
-  user     = var.snowflake_username
+  user     = var.snowflake_user
   password = var.snowflake_user_password
   role     = var.snowflake_user_role
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/role
 # https://docs.snowflake.com/en/sql-reference/sql/create-role for default values
-resource "snowflake_role" "terraform" {
+/*resource "snowflake_role" "terraform" {
   name    = "TERRAFORM_ROLE"
   comment = "Role for Terraform integration"
-}
+}*/
 
 resource "snowflake_role" "accelbyte" {
   name    = "ACCELBYTE_ROLE"
@@ -39,14 +39,14 @@ resource "snowflake_role" "hex" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/user
 # https://docs.snowflake.com/en/sql-reference/sql/create-user for default values
-resource "snowflake_user" "terraform" {
+/*resource "snowflake_user" "terraform" {
   name                  = "TERRAFORM"
   comment               = "For Terraform integration"
   password              = "secret"
   email                 = "data.admin@yugalabs.io"
   default_warehouse     = "COMPUTE_WH"
   default_role          = "TERRAFORM_ROLE"
-}
+}*/
 
 resource "snowflake_user" "accelbyte" {
   name                  = "ACCELBYTE"

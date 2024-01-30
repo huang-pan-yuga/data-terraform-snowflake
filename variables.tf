@@ -3,12 +3,7 @@ variable "snowflake_account" {
   type        = string
 }
 
-variable "snowflake_region" {
-  description = "The AWS region of the Snowflake account."
-  type        = string
-}
-
-variable "snowflake_username" {
+variable "snowflake_user" {
   description = "The username for the Snowflake Terraform user"
   sensitive   = true
   type        = string

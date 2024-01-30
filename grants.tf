@@ -1,10 +1,10 @@
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/role_grants
-resource "snowflake_role_grants" "terraform_role_grant" {
+/*resource "snowflake_role_grants" "terraform_role_grant" {
   role_name                 = snowflake_role.terraform.name
   enable_multiple_grants    = false
   roles                     = ["SYSADMIN"]
   users                     = [snowflake_user.terraform.name]
-}
+}*/
 
 resource "snowflake_role_grants" "accelbyte_role_grant" {
   role_name                 = snowflake_role.accelbyte.name
