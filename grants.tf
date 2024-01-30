@@ -46,8 +46,7 @@ resource "snowflake_database_grant" "test_database_grant" {
   database_name             = snowflake_database.test.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.accelbyte.name,
+  roles                     = [snowflake_role.accelbyte.name,
                                snowflake_role.aws.name,
                                snowflake_role.y42.name,
                                snowflake_role.sigma.name,
@@ -59,8 +58,7 @@ resource "snowflake_database_grant" "telemetry_database_grant" {
   database_name             = snowflake_database.telemetry.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.accelbyte.name,
+  roles                     = [snowflake_role.accelbyte.name,
                                snowflake_role.aws.name,
                                snowflake_role.y42.name,
                                snowflake_role.hex.name]
@@ -71,8 +69,7 @@ resource "snowflake_database_grant" "datascience_database_grant" {
   database_name             = snowflake_database.datascience.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.y42.name,
+  roles                     = [snowflake_role.y42.name,
                                snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
