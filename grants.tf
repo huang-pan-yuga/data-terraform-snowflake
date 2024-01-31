@@ -113,7 +113,6 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_accelbyte_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_accelbyte.name
   enable_multiple_grants    = false
-  on_future                 = true
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.accelbyte.name]
   with_grant_option         = false
@@ -123,7 +122,6 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_helika.name
   enable_multiple_grants    = false
-  on_future                 = true
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.aws.name]
   with_grant_option         = false
@@ -133,7 +131,6 @@ resource "snowflake_schema_grant" "telemetry_schema_bronze_web_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_web.name
   enable_multiple_grants    = false
-  on_future                 = true
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.aws.name]
   with_grant_option         = false
@@ -143,7 +140,6 @@ resource "snowflake_schema_grant" "datascience_schema_bronze_sigma_grant" {
   database_name             = snowflake_database.datascience.name
   schema_name               = snowflake_schema.datascience_bronze_sigma.name
   enable_multiple_grants    = false
-  on_future                 = true
   privilege                 = "ALL PRIVILEGES"
   roles                     = [snowflake_role.y42.name,
                                snowflake_role.hex.name,
