@@ -202,7 +202,7 @@ resource "snowflake_schema" "datascience_bronze_sigma" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/warehouse
 # https://docs.snowflake.com/en/sql-reference/sql/create-warehouse for default values
-resource "snowflake_warehouse" "compute" {
+/*resource "snowflake_warehouse" "compute" {
   name                          = "COMPUTE_WH"
   comment                       = "Main warehouse Account Admin, etc."
   warehouse_size                = "xsmall"
@@ -210,7 +210,7 @@ resource "snowflake_warehouse" "compute" {
   initially_suspended           = true
   # https://yuga-labs.atlassian.net/wiki/spaces/DAAK/pages/301400083/Snowflake+Cost+Monitoring
   statement_timeout_in_seconds  = 36000
-}
+}*/
 
 resource "snowflake_warehouse" "etl" {
   name                          = "ETL_WH"
