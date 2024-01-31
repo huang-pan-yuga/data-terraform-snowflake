@@ -87,7 +87,7 @@ resource "snowflake_schema_grant" "test_schema_future_grant" {
                                snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
-
+}
 /*
 resource "snowflake_schema_grant" "telemetry_schema_future_grant" {
   database_name             = snowflake_database.telemetry.name
