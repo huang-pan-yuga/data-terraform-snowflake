@@ -39,14 +39,14 @@ resource "snowflake_role" "hex" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/user
 # https://docs.snowflake.com/en/sql-reference/sql/create-user for default values
-/*resource "snowflake_user" "terraform" {
+resource "snowflake_user" "terraform" {
   name                  = "TERRAFORM"
   comment               = "For Terraform integration"
-  password              = "secret"
+  password              = var.snowflake_user_password
   email                 = "data.admin@yugalabs.io"
   default_warehouse     = "COMPUTE_WH"
   default_role          = "TERRAFORM_ROLE"
-}*/
+}
 
 resource "snowflake_user" "accelbyte" {
   name                  = "ACCELBYTE"
