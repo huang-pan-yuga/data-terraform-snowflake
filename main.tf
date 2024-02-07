@@ -39,14 +39,14 @@ resource "snowflake_role" "hex" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/user
 # https://docs.snowflake.com/en/sql-reference/sql/create-user for default values
-resource "snowflake_user" "terraform" {
+/*resource "snowflake_user" "terraform" {
   name                  = "TERRAFORM"
   comment               = "For Terraform integration"
   password              = "secret"
   email                 = "data.admin@yugalabs.io"
   default_warehouse     = "COMPUTE_WH"
   default_role          = "TERRAFORM_ROLE"
-}
+}*/
 
 resource "snowflake_user" "accelbyte" {
   name                  = "ACCELBYTE"
@@ -170,6 +170,24 @@ resource "snowflake_schema" "telemetry_bronze_web" {
   comment   = "For Yuga website events"
 }
 
+resource "snowflake_schema" "telemetry_silver_accelbyte" {
+  database  = "TELEMETRY_DB"
+  name      = "SILVER_ACCELBYTE"
+  comment   = "Cleaned AccelByte events"
+}
+
+resource "snowflake_schema" "telemetry_silver_helika" {
+  database  = "TELEMETRY_DB"
+  name      = "SILVER_HELIKA"
+  comment   = "Cleaned Helika events"
+}
+
+resource "snowflake_schema" "telemetry_silver_web" {
+  database  = "TELEMETRY_DB"
+  name      = "SILVER_WEB"
+  comment   = "Cleaned Yuga website events"
+}
+
 resource "snowflake_schema" "telemetry_sandbox" {
   database  = "TELEMETRY_DB"
   name      = "SANDBOX"
@@ -183,6 +201,24 @@ resource "snowflake_schema" "telemetry_archive" {
 }
 
 # DATASCIENCE_DB
+resource "snowflake_schema" "datascience_bronze" {
+  database  = "DATASCIENCE_DB"
+  name      = "BRONZE"
+  comment   = "Raw data"
+}
+
+resource "snowflake_schema" "datascience_silver" {
+  database  = "DATASCIENCE_DB"
+  name      = "SILVER"
+  comment   = "Cleaned data"
+}
+
+resource "snowflake_schema" "datascience_gold" {
+  database  = "DATASCIENCE_DB"
+  name      = "GOLD"
+  comment   = "Presentation data"
+}
+
 resource "snowflake_schema" "datascience_sandbox" {
   database  = "DATASCIENCE_DB"
   name      = "SANDBOX"
@@ -203,7 +239,7 @@ resource "snowflake_schema" "datascience_bronze_sigma" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/warehouse
 # https://docs.snowflake.com/en/sql-reference/sql/create-warehouse for default values
-/*resource "snowflake_warehouse" "compute" {
+resource "snowflake_warehouse" "compute" {
   name                          = "COMPUTE_WH"
   comment                       = "Main warehouse Account Admin, etc."
   warehouse_size                = "xsmall"
@@ -211,7 +247,7 @@ resource "snowflake_schema" "datascience_bronze_sigma" {
   initially_suspended           = true
   # https://yuga-labs.atlassian.net/wiki/spaces/DAAK/pages/301400083/Snowflake+Cost+Monitoring
   statement_timeout_in_seconds  = 36000
-}*/
+}
 
 resource "snowflake_warehouse" "etl" {
   name                          = "ETL_WH"
