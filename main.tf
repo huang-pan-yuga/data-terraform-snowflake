@@ -7,10 +7,10 @@ provider "snowflake" {
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/role
 # https://docs.snowflake.com/en/sql-reference/sql/create-role for default values
-/*resource "snowflake_role" "terraform" {
+resource "snowflake_role" "terraform" {
   name    = "TERRAFORM_ROLE"
   comment = "Role for Terraform integration"
-}*/
+}
 
 resource "snowflake_role" "accelbyte" {
   name    = "ACCELBYTE_ROLE"
