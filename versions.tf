@@ -7,7 +7,6 @@ terraform {
   }
   cloud {
     organization = "yuga-test"
-
     workspaces {
       name = "data-terraform-snowflake"
     }
