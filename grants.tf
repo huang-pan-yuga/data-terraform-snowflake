@@ -194,14 +194,14 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   all_privileges    = true
 }
 
-resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_sigma" {
-  account_role_name = snowflake_role.sigma.name
-  on_account_object {
-    object_type = "DATABASE"
-    object_name = snowflake_database.datascience.name
-  }
-  all_privileges    = true
-}
+#resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_sigma" {
+#  account_role_name = snowflake_role.sigma.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.datascience.name
+#  }
+#  all_privileges    = true
+#}
 
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
