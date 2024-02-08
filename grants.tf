@@ -42,11 +42,26 @@ resource "snowflake_role_grants" "hex_role_grant" {
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant
+
+#snowflake_grant_privileges_to_account_role
+#resource "snowflake_grant_privileges_to_role" "database_grant" {
+#  provider   = snowflake.security_admin
+#  privileges = ["USAGE"]
+#  role_name  = snowflake_role.role.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.db.name
+#  }
+#}
+
+
+
 resource "snowflake_database_grant" "test_database_grant" {
   database_name             = snowflake_database.test.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.accelbyte.name,
+  roles                     = [snowflake_role.terraform.name,
+                               snowflake_role.accelbyte.name,
                                snowflake_role.aws.name,
                                snowflake_role.y42.name,
                                snowflake_role.sigma.name,
@@ -58,9 +73,11 @@ resource "snowflake_database_grant" "telemetry_database_grant" {
   database_name             = snowflake_database.telemetry.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.accelbyte.name,
+  roles                     = [snowflake_role.terraform.name,
+                               snowflake_role.accelbyte.name,
                                snowflake_role.aws.name,
                                snowflake_role.y42.name,
+                               snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false
 }
@@ -69,7 +86,8 @@ resource "snowflake_database_grant" "datascience_database_grant" {
   database_name             = snowflake_database.datascience.name
   enable_multiple_grants    = false
   privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.y42.name,
+  roles                     = [snowflake_role.terraform.name,
+                               snowflake_role.y42.name,
                                snowflake_role.sigma.name,
                                snowflake_role.hex.name]
   with_grant_option         = false

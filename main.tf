@@ -43,19 +43,19 @@ resource "snowflake_user" "terraform" {
   name                  = "TERRAFORM"
   comment               = "For Terraform integration"
   password              = var.snowflake_user_password
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "COMPUTE_WH"
-  default_role          = "TERRAFORM_ROLE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.compute.name
+  default_role          = snowflake_role.terraform.name
 }
 
 resource "snowflake_user" "accelbyte" {
   name                  = "ACCELBYTE"
   comment               = "For AccelByte integration"
   password              = "secret"
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "ETL_WH"
-  default_role          = "ACCELBYTE_ROLE"
-  default_namespace     = "TELEMETRY_DB.BRONZE_ACCELBYTE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.etl.name
+  default_role          = snowflake_role.accelbyte.name
+  default_namespace     = snowflake_schema.telemetry_bronze_accelbyte.name
   # For AccelByte Snowflake Connector
   # https://docs.google.com/spreadsheets/d/1XZGH6kVMvaQmz-1XIZZHHXPMaVfmH8c0KyGYDk8uZXI/edit?usp=sharing
   #rsa_public_key        = ""
@@ -66,9 +66,9 @@ resource "snowflake_user" "aws" {
   name                  = "AWS"
   comment               = "For AWS integration"
   password              = "secret"
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "ETL_WH"
-  default_role          = "AWS_ROLE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.etl.name
+  default_role          = snowflake_role.aws.name
   # For AWS Kinesis Data Firehose
   # https://docs.aws.amazon.com/firehose/latest/dev/create-destination.html#create-destination-snowflake
   rsa_public_key        = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7pfN1F2A2aDYIetpJPi1eovBSXrJN0zJVc+aXd58NxYHTX83uOOrpOSKelm6fnbExtNPa/GzHwlpc9hFKB4/92w5SiUJ5jpUAWzs5wf1La0R8FLEaahcq8Q5QLDdwv5i99tP//+b3n4xUqc0Fe+4/1Nh3ohbMITBJEhYyRJbWPe8sqrDUMSYZTYyR1MUR/mJiGZ+hsj4w3L8jjvWW3G0CNDtyIa7dalZ4sl5dCt6v9GJfsmfiuL25UxLZqkjxpt38HTf9m/B2IbTccBhBOSbh0BYOZtgdR/JF37qykvl07hA7ssgR3iFctacsXjj1YPq0wS2QfHJT+Lmj8sfKC1H5QIDAQAB"
@@ -78,27 +78,27 @@ resource "snowflake_user" "y42" {
   name                  = "Y42"
   comment               = "For Y42 integration"
   password              = "secret"
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "ETL_WH"
-  default_role          = "Y42_ROLE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.etl.name
+  default_role          = snowflake_role.y42.name
 }
 
 resource "snowflake_user" "sigma" {
   name                  = "SIGMA"
   comment               = "For Sigma Computing integration"
   password              = "secret"
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "DATASCIENCE_WH"
-  default_role          = "SIGMA_ROLE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.datascience.name
+  default_role          = snowflake_role.sigma.name
 }
 
 resource "snowflake_user" "hex" {
   name                  = "HEX"
   comment               = "For Hex integration"
   password              = "secret"
-  email                 = "data.admin@yugalabs.io"
-  default_warehouse     = "DATASCIENCE_WH"
-  default_role          = "HEX_ROLE"
+  email                 = var.snowflake_user_email
+  default_warehouse     = snowflake_warehouse.datascience.name
+  default_role          = snowflake_role.hex.name
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database
@@ -122,117 +122,117 @@ resource "snowflake_database" "datascience" {
 # https://docs.snowflake.com/en/sql-reference/sql/create-schema for default values
 # TEST_DB
 resource "snowflake_schema" "test_bronze" {
-  database  = "TEST_DB"
+  database  = snowflake_database.test.name
   name      = "BRONZE"
   comment   = "Raw data"
 }
 
 resource "snowflake_schema" "test_silver" {
-  database  = "TEST_DB"
+  database  = snowflake_database.test.name
   name      = "SILVER"
   comment   = "Canonical / cleaned / tested / staged / intermediate data"
 }
 
 resource "snowflake_schema" "test_gold" {
-  database  = "TEST_DB"
+  database  = snowflake_database.test.name
   name      = "GOLD"
   comment   = "Serving / mart / metrics data"
 }
 
 resource "snowflake_schema" "test_sandbox" {
-  database  = "TEST_DB"
+  database  = snowflake_database.test.name
   name      = "SANDBOX"
   comment   = "Sandbox schema"
 }
 
 resource "snowflake_schema" "test_archive" {
-  database  = "TEST_DB"
+  database  = snowflake_database.test.name
   name      = "ARCHIVE"
   comment   = "Archived data"
 }
 
 # TELEMETRY_DB
 resource "snowflake_schema" "telemetry_bronze_accelbyte" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "BRONZE_ACCELBYTE"
   comment   = "For AccelByte events"
 }
 
 resource "snowflake_schema" "telemetry_bronze_helika" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "BRONZE_HELIKA"
   comment   = "For Helika events"
 }
 
 resource "snowflake_schema" "telemetry_bronze_web" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "BRONZE_WEB"
   comment   = "For Yuga website events"
 }
 
 resource "snowflake_schema" "telemetry_silver_accelbyte" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "SILVER_ACCELBYTE"
   comment   = "Cleaned AccelByte events"
 }
 
 resource "snowflake_schema" "telemetry_silver_helika" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "SILVER_HELIKA"
   comment   = "Cleaned Helika events"
 }
 
 resource "snowflake_schema" "telemetry_silver_web" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "SILVER_WEB"
   comment   = "Cleaned Yuga website events"
 }
 
 resource "snowflake_schema" "telemetry_sandbox" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "SANDBOX"
   comment   = "Sandbox schema"
 }
 
 resource "snowflake_schema" "telemetry_archive" {
-  database  = "TELEMETRY_DB"
+  database  = snowflake_database.telemetry.name
   name      = "ARCHIVE"
   comment   = "Archived data"
 }
 
 # DATASCIENCE_DB
 resource "snowflake_schema" "datascience_bronze" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "BRONZE"
   comment   = "Raw data"
 }
 
 resource "snowflake_schema" "datascience_silver" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "SILVER"
   comment   = "Cleaned data"
 }
 
 resource "snowflake_schema" "datascience_gold" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "GOLD"
   comment   = "Presentation data"
 }
 
 resource "snowflake_schema" "datascience_sandbox" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "SANDBOX"
   comment   = "Sandbox schema"
 }
 
 resource "snowflake_schema" "datascience_archive" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "ARCHIVE"
   comment   = "Archived data"
 }
 
 resource "snowflake_schema" "datascience_bronze_sigma" {
-  database  = "DATASCIENCE_DB"
+  database  = snowflake_database.datascience.name
   name      = "BRONZE_SIGMA"
   comment   = "Data from Sigma Computing (csv uploads, input tables, etc.)"
 }

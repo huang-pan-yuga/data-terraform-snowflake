@@ -19,3 +19,8 @@ variable "snowflake_user_role" {
   description = "The role of the Terraform user."
   type        = string
 }
+
+variable "snowflake_user_email" {
+  description = "The email of the Terraform user."
+  type        = string
+}
