@@ -55,7 +55,7 @@ resource "snowflake_user" "accelbyte" {
   email                 = var.snowflake_user_email
   default_warehouse     = snowflake_warehouse.etl.name
   default_role          = snowflake_role.accelbyte.name
-  default_namespace     = snowflake_schema.telemetry_bronze_accelbyte.name
+  default_namespace     = "TELEMETRY_DB.BRONZE_ACCELBYTE"
   # For AccelByte Snowflake Connector
   # https://docs.google.com/spreadsheets/d/1XZGH6kVMvaQmz-1XIZZHHXPMaVfmH8c0KyGYDk8uZXI/edit?usp=sharing
   #rsa_public_key        = ""
