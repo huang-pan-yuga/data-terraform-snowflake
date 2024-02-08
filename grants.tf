@@ -58,6 +58,7 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_terrafo
   account_role_name = snowflake_role.terraform.name
   on_schema {
     all_schemas_in_database = snowflake_database.test.name
+    future_schemas_in_database = snowflake_database.test.name
   }
   all_privileges    = true
 }
