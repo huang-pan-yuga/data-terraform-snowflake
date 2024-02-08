@@ -301,6 +301,14 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_fu
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_y42" {
+  privileges        = ["USAGE"]
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    schema_name = "TELEMETRY_DB.BRONZE_ACCELBYTE"
+  }
+}
+
 #  SIGMA
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
