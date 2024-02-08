@@ -73,7 +73,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
 }
 
 #  ACCELBYTE
-/*
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
   on_account_object {
@@ -98,7 +97,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   }
   all_privileges    = true
 }
-*/
 
 #  AWS
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_aws" {
@@ -153,7 +151,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
 }
 
 #  SIGMA
-/*
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
   on_account_object {
@@ -178,7 +175,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   }
   all_privileges    = true
 }
-*/
 
 #  HEX
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" {
