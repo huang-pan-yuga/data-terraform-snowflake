@@ -45,6 +45,7 @@ resource "snowflake_role_grants" "hex_role_grant" {
 # NOTE: above is a superset of https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_role
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant DEPRECATED
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant DEPRECATED
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/table_grant DEPRECATED
 ## TEST_DB
 #  TERRAFORM
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
@@ -460,46 +461,8 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_schema_grant_
 
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
-# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant DEPRECATED
-/*resource "snowflake_schema_grant" "telemetry_schema_bronze_accelbyte_grant" {
-  database_name             = snowflake_database.telemetry.name
-  schema_name               = snowflake_schema.telemetry_bronze_accelbyte.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.accelbyte.name]
-  with_grant_option         = false
-}
-
-resource "snowflake_schema_grant" "telemetry_schema_bronze_helika_grant" {
-  database_name             = snowflake_database.telemetry.name
-  schema_name               = snowflake_schema.telemetry_bronze_helika.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.aws.name]
-  with_grant_option         = false
-}
-
-resource "snowflake_schema_grant" "telemetry_schema_bronze_web_grant" {
-  database_name             = snowflake_database.telemetry.name
-  schema_name               = snowflake_schema.telemetry_bronze_web.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.aws.name]
-  with_grant_option         = false
-}
-
-resource "snowflake_schema_grant" "datascience_schema_bronze_sigma_grant" {
-  database_name             = snowflake_database.datascience.name
-  schema_name               = snowflake_schema.datascience_bronze_sigma.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.y42.name,
-                               snowflake_role.hex.name,
-                               snowflake_role.sigma.name]
-  with_grant_option         = false
-}*/
-
-# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/table_grant
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/table_grant DEPRECATED
+/*
 resource "snowflake_table_grant" "telemetry_bronze_accelbyte_table_future_grant" {
   database_name             = snowflake_database.telemetry.name
   schema_name               = snowflake_schema.telemetry_bronze_accelbyte.name
@@ -585,6 +548,7 @@ resource "snowflake_table_grant" "datascience_bronze_sigma_table_future_grant" {
                                snowflake_role.sigma.name]
   with_grant_option         = false
 }
+*/
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/warehouse_grant
 /*resource "snowflake_warehouse_grant" "compute_grant" {
