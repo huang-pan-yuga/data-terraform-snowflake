@@ -53,21 +53,27 @@ resource "snowflake_role_grants" "hex_role_grant" {
 #    object_name = snowflake_database.db.name
 #  }
 #}
-
-
-
-resource "snowflake_database_grant" "test_database_grant" {
-  database_name             = snowflake_database.test.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.accelbyte.name,
-                               snowflake_role.aws.name,
-                               snowflake_role.y42.name,
-                               snowflake_role.sigma.name,
-                               snowflake_role.hex.name]
-  with_grant_option         = false
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
 }
+
+#resource "snowflake_database_grant" "test_database_grant" {
+#  database_name             = snowflake_database.test.name
+#  enable_multiple_grants    = false
+#  privilege                 = "ALL PRIVILEGES"
+#  roles                     = [snowflake_role.terraform.name,
+#                               snowflake_role.accelbyte.name,
+#                               snowflake_role.aws.name,
+#                               snowflake_role.y42.name,
+#                               snowflake_role.sigma.name,
+#                               snowflake_role.hex.name]
+#  with_grant_option         = false
+#}
 
 resource "snowflake_database_grant" "telemetry_database_grant" {
   database_name             = snowflake_database.telemetry.name
