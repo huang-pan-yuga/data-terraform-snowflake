@@ -44,7 +44,9 @@ resource "snowflake_role_grants" "hex_role_grant" {
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
 # NOTE: above is a superset of https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_role
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant DEPRECATED
-# TEST_DB
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant DEPRECATED
+## TEST_DB
+#  TERRAFORM
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -70,6 +72,7 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   all_privileges    = true
 }
 
+#  ACCELBYTE
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
   on_account_object {
@@ -79,6 +82,23 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_accel
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+#  AWS
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_aws" {
   account_role_name = snowflake_role.aws.name
   on_account_object {
@@ -88,6 +108,23 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_aws" 
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+#  Y42
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_y42" {
   account_role_name = snowflake_role.y42.name
   on_account_object {
@@ -97,6 +134,23 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_y42" 
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+#  SIGMA
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
   on_account_object {
@@ -106,6 +160,23 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_sigma
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+#  HEX
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
   on_account_object {
@@ -115,7 +186,25 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" 
   all_privileges    = true
 }
 
-# TELEMETRY_DB
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+
+## TELEMETRY_DB
+#  TERRAFORM
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -125,6 +214,23 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+#  ACCELBYTE
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
   on_account_object {
@@ -134,6 +240,7 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
+#  AWS
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_aws" {
   account_role_name = snowflake_role.aws.name
   on_account_object {
@@ -143,6 +250,7 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
+#  Y42
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_y42" {
   account_role_name = snowflake_role.y42.name
   on_account_object {
@@ -152,6 +260,23 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+#  SIGMA
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
   on_account_object {
@@ -161,6 +286,23 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+#  HEX
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
   on_account_object {
@@ -170,7 +312,25 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
-# DATASCIENCE_DB
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+
+## DATASCIENCE_DB
+#  TERRAFORM
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -180,6 +340,23 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+#  Y42
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_y42" {
   account_role_name = snowflake_role.y42.name
   on_account_object {
@@ -189,6 +366,23 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+#  SIGMA
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
   on_account_object {
@@ -198,6 +392,23 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+#  HEX
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
   on_account_object {
@@ -206,6 +417,23 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   }
   all_privileges    = true
 }
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_all_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    all_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_future_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema {
+    future_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant DEPRECATED
