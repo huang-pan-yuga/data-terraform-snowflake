@@ -42,17 +42,6 @@ resource "snowflake_role_grants" "hex_role_grant" {
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant
-
-#snowflake_grant_privileges_to_account_role
-#resource "snowflake_grant_privileges_to_role" "database_grant" {
-#  provider   = snowflake.security_admin
-#  privileges = ["USAGE"]
-#  role_name  = snowflake_role.role.name
-#  on_account_object {
-#    object_type = "DATABASE"
-#    object_name = snowflake_database.db.name
-#  }
-#}
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -120,29 +109,119 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" 
 #  with_grant_option         = false
 #}
 
-resource "snowflake_database_grant" "telemetry_database_grant" {
-  database_name             = snowflake_database.telemetry.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.accelbyte.name,
-                               snowflake_role.aws.name,
-                               snowflake_role.y42.name,
-                               snowflake_role.sigma.name,
-                               snowflake_role.hex.name]
-  with_grant_option         = false
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
 }
 
-resource "snowflake_database_grant" "datascience_database_grant" {
-  database_name             = snowflake_database.datascience.name
-  enable_multiple_grants    = false
-  privilege                 = "ALL PRIVILEGES"
-  roles                     = [snowflake_role.terraform.name,
-                               snowflake_role.y42.name,
-                               snowflake_role.sigma.name,
-                               snowflake_role.hex.name]
-  with_grant_option         = false
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
 }
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
+
+#resource "snowflake_database_grant" "telemetry_database_grant" {
+#  database_name             = snowflake_database.telemetry.name
+#  enable_multiple_grants    = false
+#  privilege                 = "ALL PRIVILEGES"
+#  roles                     = [snowflake_role.terraform.name,
+#                               snowflake_role.accelbyte.name,
+#                               snowflake_role.aws.name,
+#                               snowflake_role.y42.name,
+#                               snowflake_role.sigma.name,
+#                               snowflake_role.hex.name]
+#  with_grant_option         = false
+#}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+#resource "snowflake_database_grant" "datascience_database_grant" {
+#  database_name             = snowflake_database.datascience.name
+#  enable_multiple_grants    = false
+#  privilege                 = "ALL PRIVILEGES"
+#  roles                     = [snowflake_role.terraform.name,
+#                               snowflake_role.y42.name,
+#                               snowflake_role.sigma.name,
+#                               snowflake_role.hex.name]
+#  with_grant_option         = false
+#}
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant
 resource "snowflake_schema_grant" "test_schema_future_grant" {
