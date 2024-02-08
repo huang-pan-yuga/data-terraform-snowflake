@@ -50,8 +50,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
   on_account_object {
     object_type = "DATABASE"
     object_name = snowflake_database.test.name
-  }
-  on_account_object {
     object_type = "DATABASE"
     object_name = snowflake_database.telemetry.name
   }
