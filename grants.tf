@@ -54,10 +54,17 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
   all_privileges    = true
 }
 
-resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_terraform" {
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_all_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_schema {
     all_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema {
     future_schemas_in_database = snowflake_database.test.name
   }
   all_privileges    = true
