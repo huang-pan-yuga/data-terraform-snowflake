@@ -51,9 +51,6 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
     object_type = "DATABASE"
     object_name = snowflake_database.test.name
   }
-  on_schema {
-    all_schemas_in_database = snowflake_database.test.name
-  }
   all_privileges    = true
 }
 
