@@ -41,7 +41,9 @@ resource "snowflake_role_grants" "hex_role_grant" {
   users                     = [snowflake_user.hex.name]
 }
 
-# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant DEPRECATED
+# TEST_DB
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -96,19 +98,7 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" 
   all_privileges    = true
 }
 
-#resource "snowflake_database_grant" "test_database_grant" {
-#  database_name             = snowflake_database.test.name
-#  enable_multiple_grants    = false
-#  privilege                 = "ALL PRIVILEGES"
-#  roles                     = [snowflake_role.terraform.name,
-#                               snowflake_role.accelbyte.name,
-#                               snowflake_role.aws.name,
-#                               snowflake_role.y42.name,
-#                               snowflake_role.sigma.name,
-#                               snowflake_role.hex.name]
-#  with_grant_option         = false
-#}
-
+# TELEMETRY_DB
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -163,19 +153,7 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
-#resource "snowflake_database_grant" "telemetry_database_grant" {
-#  database_name             = snowflake_database.telemetry.name
-#  enable_multiple_grants    = false
-#  privilege                 = "ALL PRIVILEGES"
-#  roles                     = [snowflake_role.terraform.name,
-#                               snowflake_role.accelbyte.name,
-#                               snowflake_role.aws.name,
-#                               snowflake_role.y42.name,
-#                               snowflake_role.sigma.name,
-#                               snowflake_role.hex.name]
-#  with_grant_option         = false
-#}
-
+# DATASCIENCE_DB
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_terraform" {
   account_role_name = snowflake_role.terraform.name
   on_account_object {
@@ -211,17 +189,6 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   }
   all_privileges    = true
 }
-
-#resource "snowflake_database_grant" "datascience_database_grant" {
-#  database_name             = snowflake_database.datascience.name
-#  enable_multiple_grants    = false
-#  privilege                 = "ALL PRIVILEGES"
-#  roles                     = [snowflake_role.terraform.name,
-#                               snowflake_role.y42.name,
-#                               snowflake_role.sigma.name,
-#                               snowflake_role.hex.name]
-#  with_grant_option         = false
-#}
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant
 resource "snowflake_schema_grant" "test_schema_future_grant" {
