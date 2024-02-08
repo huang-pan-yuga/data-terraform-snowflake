@@ -50,8 +50,9 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
   on_account_object {
     object_type = "DATABASE"
     object_name = snowflake_database.test.name
-    object_type = "DATABASE"
-    object_name = snowflake_database.telemetry.name
+  }
+  on_schema {
+    all_schemas_in_database = snowflake_database.test.name
   }
   all_privileges    = true
 }
@@ -102,14 +103,14 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" 
 }
 
 # TELEMETRY_DB
-#resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
-#  account_role_name = snowflake_role.terraform.name
-#  on_account_object {
-#    object_type = "DATABASE"
-#    object_name = snowflake_database.telemetry.name
-#  }
-#  all_privileges    = true
-#}
+resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
+  }
+  all_privileges    = true
+}
 
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
