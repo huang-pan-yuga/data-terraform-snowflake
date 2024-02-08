@@ -40,7 +40,7 @@ resource "snowflake_role_grants" "hex_role_grant" {
   roles                     = ["SYSADMIN"]
   users                     = [snowflake_user.hex.name]
 }
-/*
+
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
 # NOTE: above is a superset of https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_role
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant DEPRECATED
