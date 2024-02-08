@@ -118,23 +118,23 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
-resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
-  account_role_name = snowflake_role.accelbyte.name
-  on_account_object {
-    object_type = "DATABASE"
-    object_name = snowflake_database.telemetry.name
-  }
-  all_privileges    = true
-}
+#resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
+#  account_role_name = snowflake_role.accelbyte.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.telemetry.name
+#  }
+#  all_privileges    = true
+#}
 
-resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_aws" {
-  account_role_name = snowflake_role.aws.name
-  on_account_object {
-    object_type = "DATABASE"
-    object_name = snowflake_database.telemetry.name
-  }
-  all_privileges    = true
-}
+#resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_aws" {
+#  account_role_name = snowflake_role.aws.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.telemetry.name
+#  }
+#  all_privileges    = true
+#}
 
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_y42" {
   account_role_name = snowflake_role.y42.name
@@ -145,14 +145,14 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_
   all_privileges    = true
 }
 
-resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_sigma" {
-  account_role_name = snowflake_role.sigma.name
-  on_account_object {
-    object_type = "DATABASE"
-    object_name = snowflake_database.telemetry.name
-  }
-  all_privileges    = true
-}
+#resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_sigma" {
+#  account_role_name = snowflake_role.sigma.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.telemetry.name
+#  }
+#  all_privileges    = true
+#}
 
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
