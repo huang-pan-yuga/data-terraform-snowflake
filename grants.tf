@@ -62,6 +62,51 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
 #resource "snowflake_database_grant" "test_database_grant" {
 #  database_name             = snowflake_database.test.name
 #  enable_multiple_grants    = false
