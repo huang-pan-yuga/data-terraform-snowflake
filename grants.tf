@@ -42,6 +42,7 @@ resource "snowflake_role_grants" "hex_role_grant" {
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
+# NOTE: above is a superset of https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_role
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database_grant DEPRECATED
 # TEST_DB
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terraform" {
@@ -49,6 +50,10 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_terra
   on_account_object {
     object_type = "DATABASE"
     object_name = snowflake_database.test.name
+  }
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.telemetry.name
   }
   all_privileges    = true
 }
@@ -99,14 +104,14 @@ resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" 
 }
 
 # TELEMETRY_DB
-resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
-  account_role_name = snowflake_role.terraform.name
-  on_account_object {
-    object_type = "DATABASE"
-    object_name = snowflake_database.telemetry.name
-  }
-  all_privileges    = true
-}
+#resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_terraform" {
+#  account_role_name = snowflake_role.terraform.name
+#  on_account_object {
+#    object_type = "DATABASE"
+#    object_name = snowflake_database.telemetry.name
+#  }
+#  all_privileges    = true
+#}
 
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
@@ -190,7 +195,8 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_database_gran
   all_privileges    = true
 }
 
-# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/grant_privileges_to_account_role
+# https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/schema_grant DEPRECATED
 resource "snowflake_schema_grant" "test_schema_future_grant" {
   database_name             = snowflake_database.test.name
   enable_multiple_grants    = false
