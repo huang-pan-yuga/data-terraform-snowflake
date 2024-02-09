@@ -73,6 +73,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  ACCELBYTE
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
@@ -299,14 +343,6 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_fu
     future_schemas_in_database = snowflake_database.telemetry.name
   }
   all_privileges    = true
-}
-
-resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_y42" {
-  privileges        = ["USAGE"]
-  account_role_name = snowflake_role.y42.name
-  on_schema {
-    schema_name = "TELEMETRY_DB.BRONZE_ACCELBYTE"
-  }
 }
 
 #  SIGMA
