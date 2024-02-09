@@ -22,9 +22,9 @@ resource "snowflake_role" "aws" {
   comment = "Role for AWS integration"
 }
 
-resource "snowflake_role" "y42" {
-  name    = "Y42_ROLE"
-  comment = "Role for Y42 integration"
+resource "snowflake_role" "hex" {
+  name    = "HEX_ROLE"
+  comment = "Role for Hex integration"
 }
 
 resource "snowflake_role" "sigma" {
@@ -32,9 +32,9 @@ resource "snowflake_role" "sigma" {
   comment = "Role for Sigma Computing integration"
 }
 
-resource "snowflake_role" "hex" {
-  name    = "HEX_ROLE"
-  comment = "Role for Hex integration"
+resource "snowflake_role" "y42" {
+  name    = "Y42_ROLE"
+  comment = "Role for Y42 integration"
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/user
@@ -74,13 +74,13 @@ resource "snowflake_user" "aws" {
   rsa_public_key        = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7pfN1F2A2aDYIetpJPi1eovBSXrJN0zJVc+aXd58NxYHTX83uOOrpOSKelm6fnbExtNPa/GzHwlpc9hFKB4/92w5SiUJ5jpUAWzs5wf1La0R8FLEaahcq8Q5QLDdwv5i99tP//+b3n4xUqc0Fe+4/1Nh3ohbMITBJEhYyRJbWPe8sqrDUMSYZTYyR1MUR/mJiGZ+hsj4w3L8jjvWW3G0CNDtyIa7dalZ4sl5dCt6v9GJfsmfiuL25UxLZqkjxpt38HTf9m/B2IbTccBhBOSbh0BYOZtgdR/JF37qykvl07hA7ssgR3iFctacsXjj1YPq0wS2QfHJT+Lmj8sfKC1H5QIDAQAB"
 }
 
-resource "snowflake_user" "y42" {
-  name                  = "Y42"
-  comment               = "For Y42 integration"
+resource "snowflake_user" "hex" {
+  name                  = "HEX"
+  comment               = "For Hex integration"
   password              = "secret"
   email                 = var.snowflake_user_email
-  default_warehouse     = snowflake_warehouse.etl.name
-  default_role          = snowflake_role.y42.name
+  default_warehouse     = snowflake_warehouse.datascience.name
+  default_role          = snowflake_role.hex.name
 }
 
 resource "snowflake_user" "sigma" {
@@ -92,13 +92,13 @@ resource "snowflake_user" "sigma" {
   default_role          = snowflake_role.sigma.name
 }
 
-resource "snowflake_user" "hex" {
-  name                  = "HEX"
-  comment               = "For Hex integration"
+resource "snowflake_user" "y42" {
+  name                  = "Y42"
+  comment               = "For Y42 integration"
   password              = "secret"
   email                 = var.snowflake_user_email
-  default_warehouse     = snowflake_warehouse.datascience.name
-  default_role          = snowflake_role.hex.name
+  default_warehouse     = snowflake_warehouse.etl.name
+  default_role          = snowflake_role.y42.name
 }
 
 # https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest/docs/resources/database
