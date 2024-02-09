@@ -495,6 +495,50 @@ resource "snowflake_grant_privileges_to_account_role" "telemetry_schema_grant_fu
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "telemetry_table_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.telemetry.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_table_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.telemetry.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_view_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.telemetry.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "telemetry_view_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.telemetry.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  ACCELBYTE
 resource "snowflake_grant_privileges_to_account_role" "telemetry_database_grant_accelbyte" {
   account_role_name = snowflake_role.accelbyte.name
@@ -641,6 +685,50 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_schema_grant_
   account_role_name = snowflake_role.terraform.name
   on_schema {
     future_schemas_in_database = snowflake_database.datascience.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_table_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_table_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_view_grant_all_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_view_grant_future_terraform" {
+  account_role_name = snowflake_role.terraform.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.datascience.name
+    }
   }
   all_privileges    = true
 }
