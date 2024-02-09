@@ -143,6 +143,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_accelbyte" {
+  account_role_name = snowflake_role.accelbyte.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  AWS
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_aws" {
   account_role_name = snowflake_role.aws.name
@@ -165,6 +209,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   account_role_name = snowflake_role.aws.name
   on_schema {
     future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_aws" {
+  account_role_name = snowflake_role.aws.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
   }
   all_privileges    = true
 }
@@ -195,6 +283,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_y42" {
+  account_role_name = snowflake_role.y42.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  SIGMA
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_sigma" {
   account_role_name = snowflake_role.sigma.name
@@ -221,6 +353,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  HEX
 resource "snowflake_grant_privileges_to_account_role" "test_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
@@ -243,6 +419,50 @@ resource "snowflake_grant_privileges_to_account_role" "test_schema_grant_future_
   account_role_name = snowflake_role.hex.name
   on_schema {
     future_schemas_in_database = snowflake_database.test.name
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_all_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_table_grant_future_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_all_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "test_view_grant_future_hex" {
+  account_role_name = snowflake_role.hex.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.test.name
+    }
   }
   all_privileges    = true
 }
