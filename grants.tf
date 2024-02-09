@@ -785,6 +785,50 @@ resource "snowflake_grant_privileges_to_account_role" "datascience_schema_grant_
   all_privileges    = true
 }
 
+resource "snowflake_grant_privileges_to_account_role" "datascience_table_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object {
+    all {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_table_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "TABLES"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_view_grant_all_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object {
+    all {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
+resource "snowflake_grant_privileges_to_account_role" "datascience_view_grant_future_sigma" {
+  account_role_name = snowflake_role.sigma.name
+  on_schema_object  {
+    future  {
+      object_type_plural = "VIEWS"
+      in_database        = snowflake_database.datascience.name
+    }
+  }
+  all_privileges    = true
+}
+
 #  HEX
 resource "snowflake_grant_privileges_to_account_role" "datascience_database_grant_hex" {
   account_role_name = snowflake_role.hex.name
