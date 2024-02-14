@@ -1,3 +1,5 @@
+NOTE: DEPRECATED, NOT REALLY USED
+
 # terraform-snowflake-fast-data-warehouse
 
 Set up your data warehouse with speed and style using [Terraform's Snowflake provider](https://github.com/chanzuckerberg/terraform-provider-snowflake).
